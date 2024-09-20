@@ -1,0 +1,30 @@
+
+services: 
+  # mariadb server
+  mariadb:
+    image: mariadb
+    volumes:
+      # map volumes set database local
+      - ./mysql:/var/lib/mysql
+    environment:
+      # database en root password
+      MYSQL_ROOT_PASSWORD: a3b6c9
+      MYSQL_DATABASE: laravel
+    ports:
+      - 3306:3306
+    networks:
+      - phpLocalNetwork
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mariadb:db
+    ports:
+     - 8080:80
+    networks:
+      - phpLocalNetwork
+    depends_on:
+      - mariadb
+    restart: always
+networks:
+  phpLocalNetwork: 
