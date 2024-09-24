@@ -10,12 +10,15 @@ export default {
     ],
 
     theme: {
+      colors:{
+        'yellow-g':'#F9F871',
+    
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
     },
-
+  },
     plugins: [forms],
 };
