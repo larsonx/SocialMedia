@@ -12,17 +12,21 @@
     <body class="bg-grayc">
     <x-navbarlogin/>
     <main>
-        <div>
-            <p>Lorem ipsum dolor sit amet. Eos illum culpa vel animi voluptatem ut nulla quisquam. Id fugiat doloribus in quia magni aut soluta repellat sit quia atque qui officiis saepe a provident quisquam in modi voluptatum. Non quas autem et facere natus est adipisci eaque. Et nesciunt expedita ut expedita facere et sequi consequuntur 33 perferendis fuga.
+        <div class="flex items-center justify-center h-1/2 bg-gray-100">
+            <div class="bg-white p-6 shadow-lg rounded-md w-1/2 mx-4">
+                <!-- Inhoud van de div -->
+                <h2 class="text-xl font-bold">Welkom bij Socialize!</h2>
+            </br>
+                <p>Bij Socialize draait alles om verbinding maken en samen delen! Sluit je aan bij onze bruisende community waar je eenvoudig kunt chatten met vrienden, nieuwe contacten kunt leggen en jouw interesses kunt ontdekken.
 
-                Id possimus optio est atque maiores in ipsum eligendi sed itaque animi ut consequatur soluta. Qui saepe porro est omnis deleniti in voluptas provident non rerum aliquid sit rerum eveniet. Et dicta quia aut inventore accusamus non dolores fuga a molestiae exercitationem.
-                
-                Est magnam voluptas sit officiis blanditiis et esse voluptatem hic enim quisquam et voluptatem culpa sit quia reprehenderit. 33 illum voluptates et sequi dolorem ut fugiat tenetur aut galisum impedit. Id inventore vitae cum sunt molestiae est veniam enim sit alias perspiciatis id consequatur unde.Lorem ipsum dolor sit amet. Eos illum culpa vel animi voluptatem ut nulla quisquam. Id fugiat doloribus in quia magni aut soluta repellat sit quia atque qui officiis saepe a provident quisquam in modi voluptatum. Non quas autem et facere natus est adipisci eaque. Et nesciunt expedita ut expedita facere et sequi consequuntur 33 perferendis fuga.
-
-                Id possimus optio est atque maiores in ipsum eligendi sed itaque animi ut consequatur soluta. Qui saepe porro est omnis deleniti in voluptas provident non rerum aliquid sit rerum eveniet. Et dicta quia aut inventore accusamus non dolores fuga a molestiae exercitationem.
-                
-                Est magnam voluptas sit officiis blanditiis et esse voluptatem hic enim quisquam et voluptatem culpa sit quia reprehenderit. 33 illum voluptates et sequi dolorem ut fugiat tenetur aut galisum impedit. Id inventore vitae cum sunt molestiae est veniam enim sit alias perspiciatis id consequatur unde.</p>
+                    Of je nu op zoek bent naar diepgaande gesprekken of gewoon een snelle uitwisseling van gedachten, met Socialize ben je altijd in het gezelschap van gelijkgestemden. Blader door posts die passen bij jouw passies en ontdek wat anderen te zeggen hebben.
+                    
+                    Neem de tijd om je profiel in te richten, je vrienden uit te nodigen en te genieten van een unieke sociale ervaring die volledig is afgestemd op jouw interesses.
+                    
+                    Dus waar wacht je nog op? Duik in de wereld van Socialize en begin vandaag nog met het delen van jouw verhaal!</p>
+            </div>
         </div>
+        
     </main>
     <x-footer/>
     </body>
