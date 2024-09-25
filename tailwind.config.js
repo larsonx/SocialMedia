@@ -13,6 +13,7 @@ export default {
       colors:{
         'yellow-g':'#F9F871',
         'test':'#31A35F',
+        'grayc':'#EFEFEF',
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
