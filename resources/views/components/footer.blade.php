@@ -4,7 +4,9 @@
             <!-- Sectie 1 -->
             {{-- <img class="w-24 h-24" src="/logo.png" alt="Logo"> --}}
             <div class="mb-1 md:mb-0">
+                <a href="/">
                 <img class="w-24 h-24" src="/logo.png" alt="Logo">
+                </a>
             </div>
             <div class="mb-1 md:mb-0 py-8">
                 
@@ -15,10 +17,10 @@
             
             <!-- Sectie 2 -->
             <div class="mb-1 md:mb-0 ml-auto mr-5 py-8">
-                <a href="#" class="text-gray-400 font-semibold">Contact us</a>
+                <a href="/contact-us" class="text-gray-400 font-semibold">Contact us</a>
             </div>
             <div class="mb-1 md:mb-0 mr-5 py-8">
-                <a href="#" class="text-gray-400 font-semibold">About us</a>
+                <a href="/about-us" class="text-gray-400 font-semibold">About us</a>
             </div>
 
             

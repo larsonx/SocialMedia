@@ -15,15 +15,15 @@
         <div class="flex items-center justify-center h-1/2 bg-gray-100">
             <div class="bg-white p-6 shadow-lg rounded-md w-1/2 mx-4">
                 <!-- Inhoud van de div -->
-                <h2 class="text-xl font-bold">Welkom bij Socialize!</h2>
+                <h2 class="text-xl font-bold text-center">Welcome to Socialize!</h2>
             </br>
-                <p>Bij Socialize draait alles om verbinding maken en samen delen! Sluit je aan bij onze bruisende community waar je eenvoudig kunt chatten met vrienden, nieuwe contacten kunt leggen en jouw interesses kunt ontdekken.
+                <p>At Socialize, it's all about making connections and sharing together! Join our vibrant community where you can easily chat with friends, meet new people, and explore your interests.
 
-                    Of je nu op zoek bent naar diepgaande gesprekken of gewoon een snelle uitwisseling van gedachten, met Socialize ben je altijd in het gezelschap van gelijkgestemden. Blader door posts die passen bij jouw passies en ontdek wat anderen te zeggen hebben.
+                    Whether you're looking for deep conversations or just a quick exchange of thoughts, with Socialize, you're always surrounded by like-minded individuals. Browse through posts that match your passions and see what others have to say.
                     
-                    Neem de tijd om je profiel in te richten, je vrienden uit te nodigen en te genieten van een unieke sociale ervaring die volledig is afgestemd op jouw interesses.
+                    Take your time to set up your profile, invite friends, and enjoy a unique social experience that’s completely tailored to your interests.
                     
-                    Dus waar wacht je nog op? Duik in de wereld van Socialize en begin vandaag nog met het delen van jouw verhaal!</p>
+                    So, what are you waiting for? Dive into the world of Socialize and start sharing your story today!</p>
             </div>
         </div>
         
