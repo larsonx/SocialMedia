@@ -27,6 +27,16 @@
             <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" required autofocus autocomplete="address" />
             <x-input-error class="mt-2" :messages="$errors->get('address')" />
         </div>
+        <div>
+            <x-input-label for="birthdate" :value="__('Date of Birth')" />
+            <x-text-input id="birthdate" name="birthdate" type="date" class="mt-1 block w-full" :value="old('birthdate', $user->birthdate)" required autofocus autocomplete="birthdate" />
+            <x-input-error class="mt-2" :messages="$errors->get('birthdate')" />
+        </div>
+        <div>
+            <x-input-label for="description" :value="__('Description')" />
+            <x-text-input id="description" name="description" type="text" class="mt-1 block w-full" :value="old('description', $user->description)" required autofocus autocomplete="description" />
+            <x-input-error class="mt-2" :messages="$errors->get('description')" />
+        </div>
     
 
         <div>
