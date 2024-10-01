@@ -17,10 +17,10 @@
             
             <!-- Sectie 2 -->
             <div class="mb-1 md:mb-0 ml-auto mr-5 py-8">
-                <a href="/contact-us" class="text-gray-400 font-semibold">Contact us</a>
+                <a href="/contact-us" class="text-black font-semibold">Contact us</a>
             </div>
             <div class="mb-1 md:mb-0 mr-5 py-8">
-                <a href="/about-us" class="text-gray-400 font-semibold">About us</a>
+                <a href="/about-us" class="text-black font-semibold">About us</a>
             </div>
 
             
