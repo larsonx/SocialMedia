@@ -6,13 +6,14 @@
         <title>Laravel</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Fonts -->
+        <script src="https://cdn.tailwindcss.com"></script>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     </head>
-    <body class="bg-grayc">
+    <body class="bg-gray-300">
     <x-navbarlogin/>
     <main>
-        <div class="flex items-center justify-center h-1/2 bg-gray-100">
+        <div class="flex items-center justify-center h-1/2 bg-gray-300">
             <div class="bg-white p-6 shadow-lg rounded-md w-1/2 mx-4">
                 <!-- Inhoud van de div -->
                 <h2 class="text-xl font-bold text-center">Welcome to Socialize!</h2>
