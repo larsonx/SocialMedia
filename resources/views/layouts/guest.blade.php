@@ -15,7 +15,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <x-navbarnormal/>
+    <x-navbarlogin/>
     <body class="font-sans bg-gray-300 text-gray-900 antialiased">
         <div class="min-h-1/2 flex flex-col sm:justify-center items-center mt-12 sm:pt-0 ">
 
