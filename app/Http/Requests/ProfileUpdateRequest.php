@@ -21,6 +21,7 @@ class ProfileUpdateRequest extends FormRequest
             'description' => 'nullable|string|max:500',
             'address' => 'nullable|string|max:255',
             'birthdate' => 'nullable|date',
-        ];
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ];  
     }
 }
