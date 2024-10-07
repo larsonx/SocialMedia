@@ -15,6 +15,9 @@ Route::get('/contact-us', function () {
 Route::get('/home', function () {
     return view('home');
 });
+Route::get('/messages', function () {
+    return view('messages');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
