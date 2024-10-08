@@ -15,9 +15,12 @@
                 <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-300">
                     <img id="images" src="{{ asset('images/'.$user->image) }}" alt="Profile Image" class="w-full h-full object-cover"/>
                 </div> 
-                <div class="mt-4"> 
+                <div class="mt-6"> 
                     <ul>
-                        <li>d</li>
+                        <li class="mb-1">{{$user->name}}</li>
+                        <li class="mb-1">{{$user->address}}</li>
+                        <li class="mb-1">{{$user->birthdate}}</li>
+                        <li class="mb-1">{{$user->description}}</li>
                         <!-- Add more list items as needed -->
                     </ul>
                 </div>
