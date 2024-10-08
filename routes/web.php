@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileDataController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,10 @@ Route::get('/profiel', function () {
     return view('profiel');
 })->middleware(['auth', 'verified'])->name(name: 'dashboard');
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/profiel', [ProfileDataController::class, 'show'])->name('profiel');
+return view ('profiel');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
