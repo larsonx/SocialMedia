@@ -18,7 +18,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/profiel', function () {
     return view('profiel');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name(name: 'dashboard');
 
 
 Route::middleware('auth')->group(function () {
