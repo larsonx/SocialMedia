@@ -10,10 +10,18 @@
                 <li><a href="/messages" class="hover:text-blue-500">Messages</a></li>
             </ul>
         </div>
-        <div class="flex h-96 w-4/5 bg-white p-6 shadow-lg rounded-md w-1/5 mx-4">
-            
-        <div>
-        </div>
+        <div class="flex h-96 w-4/5 bg-white p-6 shadow-lg rounded-md mx-4">
+            <div class="flex flex-col items-left">
+                <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-300">
+                    <img id="images" src="{{ asset('images/'.$user->image) }}" alt="Profile Image" class="w-full h-full object-cover"/>
+                </div> 
+                <div class="mt-4"> 
+                    <ul>
+                        <li>d</li>
+                        <!-- Add more list items as needed -->
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <div class="flex items-center mt-4 justify-center">
