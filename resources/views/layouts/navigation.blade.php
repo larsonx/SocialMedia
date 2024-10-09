@@ -23,9 +23,24 @@
                 </x-slot>
 
                 <x-slot name="content">
-                    <x-dropdown-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                    <x-dropdown-link :href="route('dashboard')">
+                        {{ __('Home') }}
                     </x-dropdown-link>
+                    <x-dropdown-link :href="route('dashboard')">
+                        {{ __('Friends') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('dashboard')">
+                        {{ __('Messages') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('profile.edit')">
+                        {{ __('Edit Profile') }}
+                    </x-dropdown-link>
+                    <x-dropdown-link :href="route('profiel')">
+                        {{ __('Profiel') }}
+                    </x-dropdown-link>
+                    
+                    
+                
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
