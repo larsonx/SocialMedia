@@ -13,7 +13,7 @@
     <body class="bg-gray-300">
     <x-navbarlogin/>
     <main>
-        <div class="flex items-center justify-center h-1/2 bg-gray-300">
+        <div class="min-h-1/2 flex flex-col sm:justify-center items-center mt-12 sm:pt-0">
             <div class="bg-white p-6 shadow-lg rounded-md w-1/2 mx-4">
                 <!-- Inhoud van de div -->
                 <h2 class="text-xl font-bold text-center">Contact us!</h2>

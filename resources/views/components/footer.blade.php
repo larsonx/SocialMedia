@@ -10,7 +10,7 @@
             </div>
             <div class="mb-1 md:mb-0 py-8">
                 
-                <p class="mb-1 text-gray-400">
+                <p class="mb-1 text-black">
                     ©️ 2024 Socialize LTD. All rights reserved
                 </p>
             </div>
