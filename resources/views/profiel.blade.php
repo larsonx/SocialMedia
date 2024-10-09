@@ -28,7 +28,8 @@
         </div>
     </div>
     <div class="flex items-center mt-4 justify-center">
-    <div class="flex items-center justify-center h-96 w-full bg-white p-6 shadow-lg rounded-md mx-4">
+    <div class="flex h-96 w-full bg-white p-6 shadow-lg rounded-md mx-4">
+        <p>Recommended friends</p>
     </div>
     </div>
     <x-footer/>
