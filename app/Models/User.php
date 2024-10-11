@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'address',
         'birthdate',
         'image',
+        
     ];
 
     /**
@@ -48,16 +50,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function friends()
+    
+    public function friends(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
-            ->withPivot('accepted')
-            ->withTimestamps();
+                    ->withPivot('accepted')
+                    ->withTimestamps();
     }
-    public function friendsFrom()
+
+    public function friendsFrom(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
-            ->withPivot('accepted')
-            ->withTimestamps();
+                    ->withPivot('accepted')
+                    ->withTimestamps();
     }
+
 }

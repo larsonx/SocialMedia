@@ -40,13 +40,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/friends', [FriendsController::class, 'index'])->name('friends.index');
-    Route::post('/friends/{friendId}/request', [FriendsController::class, 'sendRequest'])->name('friends.sendRequest');
-    Route::post('/friends/{requestId}/accept', [FriendsController::class, 'acceptRequest'])->name('friends.acceptRequest');
-    Route::delete('/friends/{friendId}/remove', [FriendsController::class, 'removeFriend'])->name('friends.remove');
+Route::middleware('auth')->group(function () {
+    Route::post('/friends/send-request/{friendId}', [FriendsController::class, 'sendRequest']);
+    Route::post('/friends/accept-request/{friendId}', [FriendsController::class, 'acceptRequest']);
+    Route::post('/friends/decline-request/{friendId}', [FriendsController::class, 'declineRequest']);
+    Route::post('/friends/remove/{friendId}', [FriendsController::class, 'removeFriend']);
+    Route::get('/friends', [FriendsController::class, 'listFriends']);
+    Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests']);
 });
+
 
 require __DIR__.'/auth.php';
