@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class FriendsController extends Controller
 {
@@ -16,7 +15,7 @@ class FriendsController extends Controller
     }
     public function listFriends()
     {
-        $friends = Auth::user()->friends->where('pivot.accepted', true)->get(); // Get only accepted friends
+        $friends = Auth::user()->friends()->where('pivot.accepted', true)->get(); // Get only accepted friends
     
         return view('friends', compact('friends'));
     }
@@ -25,7 +24,7 @@ class FriendsController extends Controller
     // View pending requests
     public function listPendingRequests()
     {
-        $pendingRequests = Auth::User()->friends->where('pivot.accepted', false)->get(); // Get only pending requests
+        $pendingRequests = Auth::User()->friends()->where('pivot.accepted', false)->get(); // Get only pending requests
 
         return view('friends', compact('pendingRequests'));
     }
@@ -62,7 +61,7 @@ class FriendsController extends Controller
         $user = Auth::user();
         $friend = User::find($friendId);
 
-        $user->friends->detach($friend);
+        $user->friends()->detach($friend);
 
         return back();
     }
@@ -73,8 +72,8 @@ class FriendsController extends Controller
         $user = Auth::user();
         $friend = User::find($friendId);
 
-        $user->friends->detach($friend);
-        $friend->friends->detach($user);
+        $user->friends()->detach($friend);
+        $friend->friends()->detach($user);
 
         return back();
     }
