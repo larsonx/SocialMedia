@@ -25,10 +25,6 @@ Route::get('/profiel', function () {
     return view('profiel');
 })->middleware(['auth', 'verified'])->name(name: 'dashboard');
 
-Route::get('/friends', function () {
-    return view('friends');
-})->middleware(['auth', 'verified'])->name(name: 'dashboard');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profiel', [ProfileDataController::class, 'show'])->name('profiel');
 return view ('profiel');
@@ -45,8 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/friends/accept-request/{friendId}', [FriendsController::class, 'acceptRequest']);
     Route::post('/friends/decline-request/{friendId}', [FriendsController::class, 'declineRequest']);
     Route::post('/friends/remove/{friendId}', [FriendsController::class, 'removeFriend']);
-    Route::get('/friends', [FriendsController::class, 'listFriends']);
     Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests']);
+    Route::get('/friends', [FriendsController::class, 'UserList']);
+    return view('friends');
 });
 
 
