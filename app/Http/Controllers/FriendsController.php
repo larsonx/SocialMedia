@@ -13,10 +13,10 @@ class FriendsController extends Controller
         $users = User::all();
         return view('friends', compact('users'));
     }
+    
     public function listFriends()
     {
         $friends = Auth::user()->friends()->where('pivot.accepted', true)->get(); // Get only accepted friends
-    
         return view('friends', compact('friends'));
     }
     

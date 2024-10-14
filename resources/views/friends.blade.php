@@ -22,7 +22,6 @@
         <div class="flex items-center mt-4 justify-center">
         <div class="flex h-96 w-full bg-white p-6 shadow-lg rounded-md mx-4">
             <h2>Friends List</h2><br>
-
         </div>
         </div>
         <x-footer/>

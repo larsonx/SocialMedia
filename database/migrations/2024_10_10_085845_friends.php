@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('restrict');
             $table->foreignId('friend_id')->constrained('users')->onDelete('restrict');
-            $table->integer('accepted')->default(0);
+            $table->boolean('accepted')->default(false);
             $table->timestamps();
         });
     }

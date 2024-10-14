@@ -43,7 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/friends/remove/{friendId}', [FriendsController::class, 'removeFriend']);
     Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests']);
     Route::get('/friends', [FriendsController::class, 'UserList']);
-    return view('friends');
 });
 
 
