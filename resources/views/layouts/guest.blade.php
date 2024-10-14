@@ -17,7 +17,7 @@
     </head>
     <x-navbarnormal/>
     <body class="font-sans bg-gray-300 text-gray-900 antialiased">
-        <div class="min-h-1/2 flex flex-col sm:justify-center items-center mt-12 sm:pt-0 ">
+        <div class="min-h-1/2 flex flex-col sm:justify-center items-center mt-0 sm:pt-0 ">
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 
