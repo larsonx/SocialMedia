@@ -28,7 +28,7 @@ class FriendsController extends Controller
         $pendingRequests = Auth::user()->friendsFrom()->where('friends.accepted', false)->get();
 
 // Make sure you're getting the user's ID correctly
-        return view('pendingrequests', compact('pendingRequests'));
+        return view('pendingRequests', compact('pendingRequests'));
 
     }
     
