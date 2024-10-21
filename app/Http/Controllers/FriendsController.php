@@ -50,25 +50,41 @@ class FriendsController extends Controller
       
     // Accept friend request
     public function acceptRequest($friendId)
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
+    
+    // Check if a pending request exists from this friend
+    $request = $user->friendsFrom()->where('user_id', $friendId)->where('accepted', false)->first();
+
+    if ($request) {
+        // Update the accepted status to true
+        $user->friends()->updateExistingPivot($friendId, ['accepted' => true]);
+        // Also update the reverse relationship
         $friend = User::find($friendId);
-
-        $user->friends()->updateExistingPivot($friend, ['accepted' => true]);
-
-        return back();
+        $friend->friends()->updateExistingPivot($user->id, ['accepted' => true]);
+        
+        return back()->with('status', 'Friend request accepted!');
     }
-     
-    // Decline friend request
-    public function declineRequest($friendId)
-    {
-        $user = Auth::user();
-        $friend = User::find($friendId);
 
-        $user->friends()->detach($friend);
+    return back()->with('error', 'No pending friend request found.');
+}
 
-        return back();
+public function declineRequest($friendId)
+{
+    $user = Auth::user();
+
+    // Check if a pending request exists from this friend
+    $request = $user->friendsFrom()->where('user_id', $friendId)->where('accepted', false)->first();
+
+    if ($request) {
+        // Detach the friend request
+        $user->friendsFrom()->detach($friendId);
+        return back()->with('status', 'Friend request declined!');
     }
+
+    return back()->with('error', 'No pending friend request found.');
+}
+
     
     // Remove friend
     public function removeFriend($friendId)
