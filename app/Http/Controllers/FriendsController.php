@@ -24,10 +24,14 @@ class FriendsController extends Controller
     // View pending requests
     public function listPendingRequests()
     {
-        $pendingRequests = Auth::User()->friends()->where('pivot.accepted', false)->get(); // Get only pending requests
+        // Fetch friend requests the current user has received but are not yet accepted
+        $pendingRequests = Auth::user()->friendsFrom()->where('friends.accepted', false)->get();
 
-        return view('friends', compact('pendingRequests'));
+// Make sure you're getting the user's ID correctly
+        return view('pendingrequests', compact('pendingRequests'));
+
     }
+    
 
     // Send friend request
     public function sendRequest($friendId)
