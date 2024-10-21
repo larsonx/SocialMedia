@@ -22,6 +22,22 @@
         <div class="flex items-center mt-4 justify-center">
         <div class="flex h-96 w-full bg-white p-6 shadow-lg rounded-md mx-4">
             <h2>Friends List</h2><br>
+            @foreach($users as $user)
+    <div>
+        <p>{{ $user->name }}</p>
+
+        @if (Auth::user()->id !== $user->id && !Auth::user()->friends()->where('friend_id', $user->id)->exists())
+            <!-- Friend Request Button -->
+            <form action="{{ route('friends.sendRequest', $user->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary">Send Friend Request</button>
+            </form>
+        @elseif (Auth::user()->friends()->where('friend_id', $user->id)->exists())
+            <p>Friend request pending or already friends</p>
+        @endif
+    </div>
+@endforeach
+
         </div>
         </div>
         <x-footer/>

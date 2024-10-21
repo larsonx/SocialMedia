@@ -37,13 +37,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('/friends/send-request/{friendId}', [FriendsController::class, 'sendRequest']);
-    Route::post('/friends/accept-request/{friendId}', [FriendsController::class, 'acceptRequest']);
-    Route::post('/friends/decline-request/{friendId}', [FriendsController::class, 'declineRequest']);
-    Route::post('/friends/remove/{friendId}', [FriendsController::class, 'removeFriend']);
-    Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests']);
-    Route::get('/friends', [FriendsController::class, 'UserList']);
+    Route::post('/friends/send-request/{friendId}', [FriendsController::class, 'sendRequest'])->name('friends.sendRequest');
+    Route::post('/friends/accept-request/{friendId}', [FriendsController::class, 'acceptRequest'])->name('friends.acceptRequest');
+    Route::post('/friends/decline-request/{friendId}', [FriendsController::class, 'declineRequest'])->name('friends.declineRequest');
+    Route::post('/friends/remove/{friendId}', [FriendsController::class, 'removeFriend'])->name('friends.remove');
+    
+    Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests'])->name('friends.pending');
+    Route::get('/friends', [FriendsController::class, 'Userlist'])->name('friends.list');
 });
+
 
 
 require __DIR__.'/auth.php';

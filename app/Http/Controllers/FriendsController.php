@@ -36,8 +36,8 @@ class FriendsController extends Controller
         $friend = User::find($friendId);
     
         // Check if the request already exists
-        if (!$user->friends->where('friend_id', $friendId)->exists()) {
-            $user->friends->attach($friend, ['accepted' => false]);
+        if (!$user->friends()->where('friend_id', $friendId)->exists()) {
+            $user->friends()->attach($friend, ['accepted' => false]);
         }
     
         return back();
@@ -50,7 +50,7 @@ class FriendsController extends Controller
         $user = Auth::user();
         $friend = User::find($friendId);
 
-        $user->friends->updateExistingPivot($friend, ['accepted' => true]);
+        $user->friends()->updateExistingPivot($friend, ['accepted' => true]);
 
         return back();
     }
