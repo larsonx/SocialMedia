@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <!-- Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-</head>
-<body class="bg-gray-300">
-    <x-navbarlogin/>
-    <main>
-        <div class="flex items-stretch justify-center h-1/2 bg-gray-300 mt-4">
+<x-app-layout>
+        <div class="flex items-stretch justify-center h-1/2 mt-4">
             <div class="bg-white p-6 shadow-lg rounded-md w-1/4 mx-4">
                 <h2 class="text-xl font-bold text-center">Navigation</h2>
                 <hr class="border-gray-300 my-4 border-t-2">
@@ -115,6 +101,7 @@
         </div>
     </main>
     <x-footer/>
+</x-app-layout>
 <script>
     function toggleEmojiPicker() {
         const emojiPicker = document.getElementById('emojiPicker');

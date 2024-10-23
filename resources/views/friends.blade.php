@@ -1,5 +1,4 @@
 <x-app-layout>
-
         <div class="flex items-center mt-4 justify-center">
             <div class="bg-white p-6 shadow-lg rounded-md w-1/5 h-96 mx-4 hidden md:block">
                 <h2 class="flex justify-center text-xl">Navigation</h2>
