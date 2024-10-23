@@ -20,9 +20,9 @@
                 <hr class="border-gray-300 my-4 border-t-2">
                 <ul>
                     <li><a href="/home" class="font-bold">Home</a></li>
-                    <li><a href="/home" class="font-bold">Profile</a></li>
-                    <li><a href="/home" class="font-bold">Friends</a></li>
-                    <li><a href="/home" class="font-bold">Messages</a></li>
+                    <li><a href="/profiel" class="font-bold">Profile</a></li>
+                    <li><a href="/friends" class="font-bold">Friends</a></li>
+                    <li><a href="/messages" class="font-bold">Messages</a></li>
                 </ul>
             </div>
             <div class="bg-white p-6 shadow-lg rounded-md w-3/4 mx-4">
