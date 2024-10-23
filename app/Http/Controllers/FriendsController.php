@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class FriendsController extends Controller
 {
-    // View friends
+    // View Users
     public function Userlist(){
         $users = User::all();
         return view('friends', compact('users'));
     }
-    
+    //View friends
     public function listFriends()
     {
         $friends = Auth::user()->friends()->where('pivot.accepted', true)->get(); // Get only accepted friends

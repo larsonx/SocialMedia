@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+// zorgt voor het verwerken van friend requests
 Route::middleware('auth')->group(function () {
     Route::post('/friends/send-request/{friendId}', [FriendsController::class, 'sendRequest'])->name('friends.sendRequest');
     Route::post('/friends/accept-request/{friendId}', [FriendsController::class, 'acceptRequest'])->name('friends.acceptRequest');
@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests'])->name('friends.pending');
     Route::get('/friends', [FriendsController::class, 'Userlist'])->name('friends.list');
 });
-
+// zorgt voor het maken van een post
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
 Route::get('/home', [PostController::class, 'index'])->name('home');
