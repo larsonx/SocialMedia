@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\ProfileDataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -44,10 +45,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Voeg namen toe aan de routes
+Route::middleware('auth')->group(function () {
+    Route::post('/friends/send-request/{friendId}', [FriendsController::class, 'sendRequest'])->name('friends.sendRequest');
+    Route::post('/friends/accept-request/{friendId}', [FriendsController::class, 'acceptRequest'])->name('friends.acceptRequest');
+    Route::post('/friends/decline-request/{friendId}', [FriendsController::class, 'declineRequest'])->name('friends.declineRequest');
+    Route::post('/friends/remove/{friendId}', [FriendsController::class, 'removeFriend'])->name('friends.remove');
+    
+    Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests'])->name('friends.pending');
+    Route::get('/friends', [FriendsController::class, 'Userlist'])->name('friends.list');
+});
+
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
 Route::get('/home', [PostController::class, 'index'])->name('home');
+
 
 
 require __DIR__.'/auth.php';
