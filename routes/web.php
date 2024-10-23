@@ -4,19 +4,28 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\ProfileDataController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/about-us', function () {
     return view('about-us');
 });
+
 Route::get('/contact-us', function () {
     return view('contact-us');
 });
+
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/messages', function () {
+    return view('messages');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -45,6 +54,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests'])->name('friends.pending');
     Route::get('/friends', [FriendsController::class, 'Userlist'])->name('friends.list');
 });
+
+Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
+Route::get('/home', [PostController::class, 'index'])->name('home');
 
 
 
