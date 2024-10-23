@@ -7,7 +7,7 @@
                 <ul class="text-xl">
                     <li><a href="/dashboard" class="hover:text-blue-500">Home</a></li>
                     <li><a href="/profile" class="hover:text-blue-500">Profile</a></li>
-                    <li><a href="/friend" class="hover:text-blue-500">Friends</a></li>
+                    <li><a href="/friends" class="hover:text-blue-500">Friends</a></li>
                     <li><a href="/messages" class="hover:text-blue-500">Messages</a></li>
                 </ul>
             </div>
