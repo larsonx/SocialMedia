@@ -26,15 +26,26 @@
     <div>
         <p>{{ $user->name }}</p>
 
-        @if (Auth::user()->id !== $user->id && !Auth::user()->friends()->where('friend_id', $user->id)->exists())
-            <!-- Friend Request Button -->
-            <form action="{{ route('friends.sendRequest', $user->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-primary">Send Friend Request</button>
-            </form>
-        @elseif (Auth::user()->friends()->where('friend_id', $user->id)->exists())
-            <p>Friend request pending or already friends</p>
-        @endif
+        @if (Auth::user()->id !== $user->id)
+    @php
+        $friendship = Auth::user()->friends()->where('friend_id', $user->id)->first();
+        $reverseFriendship = Auth::user()->friendsFrom()->where('user_id', $user->id)->first();
+    @endphp
+
+    @if (!$friendship && !$reverseFriendship)
+        <!-- Friend Request Button -->
+        <form action="{{ route('friends.sendRequest', $user->id) }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-primary">Send Friend Request</button>
+        </form>
+    @elseif ($friendship && !$friendship->pivot->accepted)
+        <p>Friend request pending</p>
+    @elseif ($reverseFriendship && !$reverseFriendship->pivot->accepted)
+        <p>Friend request received. Please accept the request.</p>
+    @else
+        <p>Already friends</p>
+    @endif
+@endif
     </div>
 @endforeach
 
