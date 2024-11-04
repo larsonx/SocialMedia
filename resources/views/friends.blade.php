@@ -1,23 +1,32 @@
 <x-app-layout>
-        <div class="flex items-center mt-4 justify-center">
-            <div class="bg-white p-6 shadow-lg rounded-md w-1/5 h-96 mx-4 hidden md:block">
-                <h2 class="flex justify-center text-xl">Navigation</h2>
-                <hr class="border-gray-300 my-4 border-t-2">
-                <ul class="text-xl">
-                    <li><a href="/dashboard" class="hover:text-blue-500">Home</a></li>
-                    <li><a href="/profile" class="hover:text-blue-500">Profile</a></li>
-                    <li><a href="/friends" class="hover:text-blue-500">Friends</a></li>
-                    <li><a href="/messages" class="hover:text-blue-500">Messages</a></li>
-                </ul>
+    <div class="flex items-center mt-4 justify-center">
+        <div class="bg-white p-6 shadow-lg rounded-md w-1/5 h-96 mx-4 hidden md:block">
+            <h2 class="flex justify-center text-xl">Navigation</h2>
+            <hr class="border-gray-300 my-4 border-t-2">
+            <ul class="text-xl">
+                <li><a href="/dashboard" class="hover:text-blue-500">Home</a></li>
+                <li><a href="/profile" class="hover:text-blue-500">Profile</a></li>
+                <li><a href="/friends" class="hover:text-blue-500">Friends</a></li>
+                <li><a href="/messages" class="hover:text-blue-500">Messages</a></li>
+            </ul>
+        </div>
+    
+        <!-- Main Content -->
+        <div class="flex flex-col h-96 w-full md:w-4/5 bg-white p-6 shadow-lg rounded-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <!-- Title and Search Bar in One Row -->
+                <h2 class="text-xl font-bold">Search Friends</h2>
+                <!-- Adjusts the margin for alignment with the text -->
+                <x-search class="ml-4 w-full max-w-xs h-10" />
             </div>
-            <div class="flex h-96 w-full md:w-4/5 bg-white p-6 shadow-lg rounded-md mx-4">
-                <h2>Search Friends</h2>
-                <x-search></x-search>   
-                <div class="flex flex-col items-left">
-                    
-                </div>
+            
+            <!-- Optional additional content goes here -->
+            <div class="flex flex-col items-left">
+                <!-- Content for friend search results, etc. -->
             </div>
         </div>
+    </div>
+    
         <div class="flex items-center mt-4 justify-center">
             <div class="flex flex-col w-full bg-white p-6 shadow-lg rounded-md mx-4 h-auto">
                 <h2 class="text-lg font-bold mb-4">Friends List</h2>
