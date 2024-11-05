@@ -63,7 +63,12 @@
                                     @elseif ($friendship && !$friendship->pivot->accepted)
                                         <p class="text-yellow-600 text-sm">Friend request pending</p>
                                     @elseif ($reverseFriendship && !$reverseFriendship->pivot->accepted)
-                                        <p class="text-yellow-600 text-sm">Friend request received. Please accept the request.</p>
+                                        <form action="{{ route('friends.acceptRequest', $user->id) }}" method="POST" class="mt-1">
+                                            @csrf
+                                            <button type="submit" class="text-blue-500 hover:underline text-sm">
+                                                Accept Friend Request
+                                            </button>
+                                        </form>
                                     @else
                                         <p class="text-green-600 text-sm">Already friends</p>
                                     @endif
