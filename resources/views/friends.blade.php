@@ -21,51 +21,10 @@
                     <x-search class="ml-4 w-full max-w-xs h-10" />
                 </div>
             </div>
-            <div>Users</div>
-            <!-- Optional additional content goes here -->
-            <div class="flex flex-col items-left">
-                <!-- Content for friend search results, etc. -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- Added Friends List -->
-    <div class="flex items-center mt-4 justify-center">
-        <div class="flex flex-col w-full bg-white p-6 shadow-lg rounded-md mx-4 h-auto">
-            <h2 class="text-lg font-bold mb-4">Added Friends</h2>
-            
-            <!-- Grid layout with 3 columns -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> 
-                @foreach($users as $user)
-                    @php
-                        $friendship = Auth::user()->friends()->where('friend_id', $user->id)->first();
-                        $reverseFriendship = Auth::user()->friendsFrom()->where('user_id', $user->id)->first();
-                    @endphp
-                    
-                    @if (($friendship && $friendship->pivot->accepted) || ($reverseFriendship && $reverseFriendship->pivot->accepted))
-                        <div class="flex items-center space-x-4">
-                            <!-- Profile Image -->
-                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-300">
-                                <img src="{{ asset('images/' . $user->image) }}" alt="Profile Image" class="w-full h-full object-cover"/>
-                            </div>
-                            
-                            <!-- User Information -->
-                            <div class="flex flex-col">
-                                <p class="text-md font-semibold">{{ $user->name }}</p>
-                                <p class="text-green-600 text-sm">Already friends</p>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <!-- Users to Send Requests or Pending Requests -->
-    <div class="flex items-center mt-4 justify-center">
-        <div class="flex flex-col w-full bg-white p-6 shadow-lg rounded-md mx-4 h-auto">
-            <h2 class="text-lg font-bold mb-4">Users to Send Requests or Pending Requests</h2>
-            
+      
+             <!-- Users to Send Requests or Pending Requests -->
+    <div class="flex items-left mt-4 justify-start">
+        <div class="flex flex-col h-auto">
             <!-- Grid layout with 3 columns -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> 
                 @foreach($users as $user)
@@ -129,4 +88,40 @@
         </div>
     </div>
 
+        </div>
+    </div>
+    
+    <!-- Added Friends List -->
+    <div class="flex items-center mt-4 justify-center">
+        <div class="flex flex-col w-full bg-white p-6 shadow-lg rounded-md mx-4 h-auto">
+            <h2 class="text-lg font-bold mb-4">Friends</h2>
+            
+            <!-- Grid layout with 3 columns -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> 
+                @foreach($users as $user)
+                    @php
+                        $friendship = Auth::user()->friends()->where('friend_id', $user->id)->first();
+                        $reverseFriendship = Auth::user()->friendsFrom()->where('user_id', $user->id)->first();
+                    @endphp
+                    
+                    @if (($friendship && $friendship->pivot->accepted) || ($reverseFriendship && $reverseFriendship->pivot->accepted))
+                        <div class="flex items-center space-x-4">
+                            <!-- Profile Image -->
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-300">
+                                <img src="{{ asset('images/' . $user->image) }}" alt="Profile Image" class="w-full h-full object-cover"/>
+                            </div>
+                            
+                            <!-- User Information -->
+                            <div class="flex flex-col">
+                                <p class="text-md font-semibold">{{ $user->name }}</p>
+                                <p class="text-green-600 text-sm">Already friends</p>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+   
 </x-app-layout>
