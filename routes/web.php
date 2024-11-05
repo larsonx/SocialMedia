@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/friends/decline-request/{friendId}', [FriendsController::class, 'declineRequest'])->name('friends.declineRequest');
     Route::post('/friends/remove/{friendId}', [FriendsController::class, 'removeFriend'])->name('friends.remove');
     
+
+    Route::get('/friends/list', [FriendsController::class, 'listFriends'])->name('friends.listFriends');
     Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests'])->name('friends.pending');
     Route::get('/friends', [FriendsController::class, 'Userlist'])->name('friends.list');
 });

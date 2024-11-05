@@ -16,10 +16,12 @@
             <div class="flex items-center justify-between mb-4">
                 <!-- Title and Search Bar in One Row -->
                 <h2 class="text-xl font-bold">Search Friends</h2>
+            <div>
+            </div>
                 <!-- Adjusts the margin for alignment with the text -->
                 <x-search class="ml-4 w-full max-w-xs h-10" />
             </div>
-            
+            <div>Users</div>
             <!-- Optional additional content goes here -->
             <div class="flex flex-col items-left">
                 <!-- Content for friend search results, etc. -->
