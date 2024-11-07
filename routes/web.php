@@ -5,6 +5,7 @@ use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\ProfileDataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ChatController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,6 +64,6 @@ Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->nam
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
 Route::get('/home', [PostController::class, 'index'])->name('home');
 
-
+Route::post('/send-message', [ChatController::class, 'sendMessage'])->middleware('auth');
 
 require __DIR__.'/auth.php';
