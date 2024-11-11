@@ -5,6 +5,7 @@ use App\Http\Controllers\FriendsController;
 use App\Http\Controllers\ProfileDataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ChatController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,6 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/friends/decline-request/{friendId}', [FriendsController::class, 'declineRequest'])->name('friends.declineRequest');
     Route::post('/friends/remove/{friendId}', [FriendsController::class, 'removeFriend'])->name('friends.remove');
     
+
+    Route::get('/friends/list', [FriendsController::class, 'listFriends'])->name('friends.listFriends');
     Route::get('/friends/pending', [FriendsController::class, 'listPendingRequests'])->name('friends.pending');
     Route::get('/friends', [FriendsController::class, 'Userlist'])->name('friends.list');
 });
@@ -62,5 +65,9 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('
 Route::get('/home', [PostController::class, 'index'])->name('home');
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/messages/{friendId}', [ChatController::class, 'showMessages'])->name('messages.show');
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
+});
 
 require __DIR__.'/auth.php';
