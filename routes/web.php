@@ -64,6 +64,6 @@ Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->nam
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
 Route::get('/home', [PostController::class, 'index'])->name('home');
 
-Route::post('/send-message', [ChatController::class, 'sendMessage'])->middleware('auth');
+
 
 require __DIR__.'/auth.php';
