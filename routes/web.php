@@ -65,5 +65,9 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('
 Route::get('/home', [PostController::class, 'index'])->name('home');
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/messages/{friendId}', [ChatController::class, 'showMessages'])->name('messages.show');
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
+});
 
 require __DIR__.'/auth.php';
