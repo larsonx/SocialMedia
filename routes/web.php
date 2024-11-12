@@ -66,6 +66,7 @@ Route::get('/home', [PostController::class, 'index'])->name('home');
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/messages', [ChatController::class, 'index'])->name('messages');
     Route::get('/messages/{friendId}', [ChatController::class, 'showChatroom'])->name('messages.show');
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
 });
