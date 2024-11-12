@@ -5,4 +5,5 @@ use App\Models\User;
 
 class ChatChannel {
  
+    
 }

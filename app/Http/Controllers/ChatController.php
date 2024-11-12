@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller {
-    public function listFriends()
+    public function Friendslist()
     {
         // Get only accepted friends
         $friends = Auth::user()->friends()->where('friends.accepted', true)->get();
