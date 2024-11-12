@@ -1,23 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 use App\Events\MessageSent;
-use App\Models\Chat;
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller {
-    public function showChatroom($friendId) {
-        return view('messages', ['friendId' => $friendId]);
-    }
-    public function sendMessage(Request $request) {
-        $chat = Chat::create([
-            'user_id' => auth()->id(),
-            'friend_id' => $request->friend_id,
-            'message' => $request->message,
-        ]);
-
-        broadcast(new MessageSent($chat))->toOthers();
-
-        return response()->json(['status' => 'Message Sent!']);
-    }
+    
 }

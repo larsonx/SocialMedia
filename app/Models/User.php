@@ -83,4 +83,5 @@ class User extends Authenticatable
     {
         return $this->friendsFrom()->wherePivot('accepted', true);
     }
+    
 }
