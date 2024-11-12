@@ -23,9 +23,12 @@ Route::get('/home', function () {
     return view('home');
 });
 
+// routes/web.php
+
 Route::get('/messages', function () {
     return view('messages');
-});
+})->middleware('auth');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -65,10 +68,5 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('
 Route::get('/home', [PostController::class, 'index'])->name('home');
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/messages', [ChatController::class, 'index'])->name('messages');
-    Route::get('/messages/{friendId}', [ChatController::class, 'showChatroom'])->name('messages.show');
-    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
-});
 
 require __DIR__.'/auth.php';
