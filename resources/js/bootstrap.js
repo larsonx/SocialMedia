@@ -9,7 +9,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allow your team to quickly build robust real-time web applications.
  */
 
-import './echo';
 // resources/assets/js/bootstrap.js
 
 import Echo from "laravel-echo"
@@ -24,3 +23,8 @@ window.Echo = new Echo({
     encrypted: true,
     forceTLS: true
 });
+window.Echo.channel('chat')
+    .listen('MessageSent', (event) => {
+        console.log(event.message);
+        // Here you can update the chat UI by appending the new message
+    });
