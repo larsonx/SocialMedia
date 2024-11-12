@@ -18,6 +18,7 @@
                 <div class="flex justify-center w-3/4 mx-auto">
                     <form class="w-full" action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf <!-- Laravel CSRF token -->
+                        
                         <textarea id="messageInput" name="content" class="w-full h-32 p-2 rounded border border-gray-300" maxlength="280" placeholder="Type your message here..." required></textarea>
                         
                         <div class="flex items-center justify-end space-x-2 mt-1">
