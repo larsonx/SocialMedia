@@ -10,7 +10,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 
-class MesssageSent implements ShouldBroadcast {
+class MessageSent implements ShouldBroadcast {
     use InteractsWithSockets, SerializesModels;
 
     public $chat;
@@ -30,6 +30,6 @@ class MesssageSent implements ShouldBroadcast {
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn() {
-        return new PrivateChannel('chat.' . $this->chat->friend_id);
+        return new PrivateChannel('messages.' . $this->chat->friend_id);
     }
 }
