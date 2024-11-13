@@ -22,12 +22,26 @@
                 <div class="flex flex-col h-auto">
                     <ul id="friends-list">
                         @foreach($users as $user)
-                        @foreach($user->friends as $friend)
-                            <li>
-                                <a href="#" class="friend-link" data-friend-id="{{ $user->id }}">{{ $friend->name }}</a>
-                            </li>
-                            @endforeach
-                        @endforeach
+                        @php
+                            $friendship = Auth::user()->friends()->where('friend_id', $user->id)->first();
+                            $reverseFriendship = Auth::user()->friendsFrom()->where('user_id', $user->id)->first();
+                        @endphp
+                        
+                        @if (($friendship && $friendship->pivot->accepted) || ($reverseFriendship && $reverseFriendship->pivot->accepted))
+                            <div class="flex items-center space-x-4">
+                                <!-- Profile Image -->
+                                <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-300">
+                                    <img src="{{ asset('images/' . $user->image) }}" alt="Profile Image" class="w-full h-full object-cover"/>
+                                </div>
+                                
+                                <!-- User Information -->
+                                <div class="flex flex-col">
+                                    <p class="text-md font-semibold">{{ $user->name }}</p>
+                                    <p class="text-green-600 text-sm">Friend</p>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
                     </ul>
                 </div>
             </div>
