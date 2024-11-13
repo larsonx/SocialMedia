@@ -17,7 +17,8 @@ class ChatController extends Controller {
     {
         $message = new Chat();
         $message->user_id = Auth::id();
-        $message->content = $request->message;
+        $message->friend_id = $request->friend_id; // Ensure friend_id is passed in the request
+        $message->message = $request->message;
         $message->save();
 
         broadcast(new MessageSent($message))->toOthers();

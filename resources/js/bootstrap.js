@@ -25,6 +25,6 @@ window.Echo = new Echo({
 });
 window.Echo.channel('chat')
     .listen('MessageSent', (event) => {
-        console.log(event.message);
+        console.log(event.chat);
         // Here you can update the chat UI by appending the new message
     });
