@@ -1,39 +1,54 @@
-<!-- resources/views/messages.blade.php -->
 <x-app-layout>
-    <main class="container mx-auto mt-10">
-        <div class="flex">
-            <div class="bg-white p-6 shadow-lg rounded-md w-1/4">
-                <ul>
-                    <li><a href="/home" class="font-bold">Home</a></li>
-                    <li><a href="/profiel" class="font-bold">Profile</a></li>
-                    <li><a href="/friends" class="font-bold">Friends</a></li>
-                    <li><a href="/messages" class="font-bold">Messages</a></li>
-                </ul>
+    <div class="flex items-center mt-4 justify-center">
+        <div class="bg-white p-6 shadow-lg rounded-md w-1/5 h-96 mx-4 hidden md:block">
+            <h2 class="flex justify-center text-xl">Navigation</h2>
+            <hr class="border-gray-300 my-4 border-t-2">
+            <ul class="text-xl">
+                <li><a href="/dashboard" class="hover:text-blue-500">Home</a></li>
+                <li><a href="/profile" class="hover:text-blue-500">Profile</a></li>
+                <li><a href="/friends" class="hover:text-blue-500">Friends</a></li>
+                <li><a href="/messages" class="hover:text-blue-500">Messages</a></li>
+            </ul>
+        </div>
+    
+        <!-- Main Content -->
+        <div class="flex flex-col h-96 w-full md:w-4/5 bg-white p-6 shadow-lg rounded-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold">Friends List</h2>
             </div>
-            <div class="bg-white p-6 shadow-lg rounded-md w-1/4 mx-4">
-                <h2 class="text-xl font-bold text-center">Friends List</h2>
-                <ul id="friends-list">
-                    @foreach($friends as $friend)
-                        <li>
-                            <a href="#" class="friend-link" data-friend-id="{{ $friend->id }}">{{ $friend->name }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-            <div class="bg-white p-6 shadow-lg rounded-md w-1/2 mx-4">
-                <h2 class="text-xl font-bold text-center">Chat</h2>
-                <div id="chat-box" class="border p-4 h-64 overflow-y-scroll">
-                    <!-- Chat messages will be appended here -->
+      
+            <!-- Friends List -->
+            <div class="flex items-left mt-4 justify-start">
+                <div class="flex flex-col h-auto">
+                    <ul id="friends-list">
+                        @foreach($users as $user)
+                        @foreach($user->friends as $friend)
+                            <li>
+                                <a href="#" class="friend-link" data-friend-id="{{ $user->id }}">{{ $friend->name }}</a>
+                            </li>
+                            @endforeach
+                        @endforeach
+                    </ul>
                 </div>
-                <form id="chat-form" class="mt-4">
-                    <input type="hidden" id="friend-id" name="friend_id">
-                    <textarea id="message" name="message" class="w-full border rounded p-2" rows="3" placeholder="Type your message..."></textarea>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Send</button>
-                </form>
             </div>
         </div>
-    </main>
-    <x-footer/>
+    </div>
+    
+    <!-- Chat Box -->
+    <div class="flex items-center mt-4 justify-center">
+        <div class="flex flex-col w-full bg-white p-6 shadow-lg rounded-md mx-4 h-auto">
+            <h2 class="text-lg font-bold mb-4">Chat</h2>
+            
+            <div id="chat-box" class="border p-4 h-64 overflow-y-scroll">
+                <!-- Chat messages will be appended here -->
+            </div>
+            <form id="chat-form" class="mt-4">
+                <input type="hidden" id="friend-id" name="friend_id">
+                <textarea id="message" name="message" class="w-full border rounded p-2" rows="3" placeholder="Type your message..."></textarea>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Send</button>
+            </form>
+        </div>
+    </div>
 </x-app-layout>
 
 <script>
@@ -50,7 +65,7 @@
                 const friendId = e.target.getAttribute('data-friend-id');
                 friendIdInput.value = friendId;
                 chatBox.innerHTML = ''; // Clear chat box
-                // Load chat history with the selected friend (you need to implement this)
+                // Load chat history with the selected friend
                 loadChatHistory(friendId);
             }
         });
@@ -61,20 +76,40 @@
             const message = messageInput.value;
 
             if (friendId && message) {
-                // Send message to the server (you need to implement this)
+                // Send message to the server
                 sendMessage(friendId, message);
                 messageInput.value = ''; // Clear message input
             }
         });
 
         function loadChatHistory(friendId) {
-            // Implement AJAX request to load chat history with the selected friend
-            // Append chat messages to chatBox
+            axios.get(`/chat-history/${friendId}`)
+                .then(response => {
+                    const messages = response.data;
+                    messages.forEach(message => {
+                        const messageElement = document.createElement('div');
+                        messageElement.textContent = message.message;
+                        chatBox.appendChild(messageElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading chat history:', error);
+                });
         }
 
         function sendMessage(friendId, message) {
-            // Implement AJAX request to send message to the server
-            // Append the sent message to chatBox
+            axios.post('/send-message', {
+                friend_id: friendId,
+                message: message
+            })
+            .then(response => {
+                const messageElement = document.createElement('div');
+                messageElement.textContent = message;
+                chatBox.appendChild(messageElement);
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+            });
         }
     });
 </script>
