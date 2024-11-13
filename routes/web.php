@@ -70,5 +70,7 @@ Route::get('/home', [PostController::class, 'index'])->name('home');
 Route::middleware('auth')->group(function () {
     Route::get('/messages', [ChatController::class, 'Friendslist'])->name('messages');
     Route::middleware('auth')->post('/sendMessage', [ChatController::class, 'messages.sendMessage']);
+    Route::get('/chat-history/{friendId}', [ChatController::class, 'ChatHistory'])->name('messages.chatHistory');
+
 });
 require __DIR__.'/auth.php';
