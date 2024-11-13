@@ -36,7 +36,9 @@
                                 
                                 <!-- User Information -->
                                 <div class="flex flex-col">
-                                    <p class="text-md font-semibold">{{ $user->name }}</p>
+                                    <p class="text-md font-semibold">
+                                        <a href="#" class="friend-link" data-friend-id="{{ $user->id }}">{{ $user->name }}</a>
+                                    </p>
                                     <p class="text-green-600 text-sm">Friend</p>
                                 </div>
                             </div>
