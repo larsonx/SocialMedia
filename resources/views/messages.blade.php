@@ -104,7 +104,7 @@
                     const messages = response.data;
                     messages.forEach(message => {
                         const messageElement = document.createElement('div');
-                        messageElement.textContent = message.message;
+                        messageElement.innerHTML = `<strong>${message.user}</strong>: ${message.message} <br><small>${message.created_at}</small>`;
                         chatBox.appendChild(messageElement);
                     });
                 })
@@ -120,12 +120,29 @@
             })
             .then(response => {
                 const messageElement = document.createElement('div');
-                messageElement.textContent = message;
+                messageElement.innerHTML = `<strong>${response.data.user}</strong>: ${response.data.message} <br><small>${response.data.created_at}</small>`;
                 chatBox.appendChild(messageElement);
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
             })
             .catch(error => {
                 console.error('Error sending message:', error);
             });
         }
+
+        // Initialize Pusher
+        Pusher.logToConsole = true;
+
+        const pusher = new Pusher('YOUR_PUSHER_APP_KEY', {
+            cluster: 'YOUR_PUSHER_APP_CLUSTER',
+            encrypted: true
+        });
+
+        const channel = pusher.subscribe('chat');
+        channel.bind('message', function(data) {
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = `<strong>${data.user}</strong>: ${data.message} <br><small>${data.created_at}</small>`;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        });
     });
 </script>
