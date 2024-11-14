@@ -83,5 +83,9 @@ class User extends Authenticatable
     {
         return $this->friendsFrom()->wherePivot('accepted', true);
     }
+    public function messages()
+{
+    return $this->hasMany(Message::class);
+}
 }
 
