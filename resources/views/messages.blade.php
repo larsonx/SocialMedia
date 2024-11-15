@@ -143,8 +143,8 @@
     // Initialize Pusher
     Pusher.logToConsole = true;
 
-    const pusher = new Pusher('your-pusher-key', {
-        cluster: 'your-pusher-cluster',
+    const pusher = new Pusher('8e703f9e1f1f2bf1d375', {
+        cluster: 'eu',
         encrypted: true
     });
 
