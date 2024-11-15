@@ -47,15 +47,15 @@ return [
         ],
 
         'pusher' => [
-            'driver' => 'pusher',
-            'key' => env('8e703f9e1f1f2bf1d375'),
-            'secret' => env('fff111d5b2ab066362a4'),
-            'app_id' => env('1885374'),
-            'options' => [
-            'cluster' => env('eu'),
-            'useTLS' => true,
-            ],
-        ],
+    'driver' => 'pusher',
+    'key' => env('PUSHER_APP_KEY'),
+    'secret' => env('PUSHER_APP_SECRET'),
+    'app_id' => env('PUSHER_APP_ID'),
+    'options' => [
+        'cluster' => env('PUSHER_APP_CLUSTER'),
+        'useTLS' => true,
+    ],
+],
 
 
         'ably' => [
