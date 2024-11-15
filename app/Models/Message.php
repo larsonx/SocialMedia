@@ -24,8 +24,4 @@ class Message extends Model
     {
         return $this->belongsTo(User::class, 'friend_id');
     }
-    public function messages()
-{
-    return $this->hasMany(Message::class);
-}
 }

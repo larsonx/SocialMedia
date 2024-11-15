@@ -144,5 +144,6 @@
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
         });
+        
     });
 </script>
