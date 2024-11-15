@@ -68,7 +68,7 @@
 </x-app-layout>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
     const friendsList = document.getElementById('friends-list');
     const chatBox = document.getElementById('chat-box');
     const chatForm = document.getElementById('chat-form');
@@ -83,6 +83,7 @@
             chatBox.innerHTML = ''; // Clear chat box
             // Load chat history with the selected friend
             loadChatHistory(friendId);
+            subscribeToChannel(friendId); // Subscribe to the channel for real-time updates
         }
     });
 
@@ -104,7 +105,7 @@
                 const messages = response.data;
                 messages.forEach(message => {
                     const messageElement = document.createElement('div');
-                    messageElement.innerHTML = `<strong>${message.user}</strong>: ${message.message} <br><small>${message.created_at}</small>`;
+                    messageElement.innerHTML = `<strong>${message.user.name}</strong>: ${message.message} <br><small>${message.created_at}</small>`;
                     chatBox.appendChild(messageElement);
                 });
             })
@@ -129,6 +130,16 @@
         });
     }
 
+    function subscribeToChannel(friendId) {
+        Echo.private(`chat.${friendId}`)
+            .listen('MessageSent', (data) => {
+                const messageElement = document.createElement('div');
+                messageElement.innerHTML = `<strong>${data.user}</strong>: ${data.message} <br><small>${data.created_at}</small>`;
+                chatBox.appendChild(messageElement);
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+            });
+    }
+
     // Initialize Pusher
     Pusher.logToConsole = true;
 
@@ -145,5 +156,4 @@
         chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
     });
 });
-    
 </script>

@@ -22,15 +22,18 @@ class ChatController extends Controller
     }
 
     public function fetchMessages($friend_id)
-    {
-        return Message::where(function($query) use ($friend_id) {
+{
+    $messages = Message::with('user')
+        ->where(function($query) use ($friend_id) {
             $query->where('user_id', auth()->id())
                   ->where('friend_id', $friend_id);
         })->orWhere(function($query) use ($friend_id) {
             $query->where('user_id', $friend_id)
                   ->where('friend_id', auth()->id());
         })->get();
-    }
+
+    return response()->json($messages);
+}
 
     public function sendMessage(Request $request)
     {
