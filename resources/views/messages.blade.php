@@ -68,82 +68,82 @@
 </x-app-layout>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const friendsList = document.getElementById('friends-list');
-        const chatBox = document.getElementById('chat-box');
-        const chatForm = document.getElementById('chat-form');
-        const friendIdInput = document.getElementById('friend-id');
-        const messageInput = document.getElementById('message');
+  document.addEventListener('DOMContentLoaded', function () {
+    const friendsList = document.getElementById('friends-list');
+    const chatBox = document.getElementById('chat-box');
+    const chatForm = document.getElementById('chat-form');
+    const friendIdInput = document.getElementById('friend-id');
+    const messageInput = document.getElementById('message');
 
-        friendsList.addEventListener('click', function (e) {
-            if (e.target.classList.contains('friend-link')) {
-                e.preventDefault();
-                const friendId = e.target.getAttribute('data-friend-id');
-                friendIdInput.value = friendId;
-                chatBox.innerHTML = ''; // Clear chat box
-                // Load chat history with the selected friend
-                loadChatHistory(friendId);
-            }
-        });
-
-        chatForm.addEventListener('submit', function (e) {
+    friendsList.addEventListener('click', function (e) {
+        if (e.target.classList.contains('friend-link')) {
             e.preventDefault();
-            const friendId = friendIdInput.value;
-            const message = messageInput.value;
-
-            if (friendId && message) {
-                // Send message to the server
-                sendMessage(friendId, message);
-                messageInput.value = ''; // Clear message input
-            }
-        });
-
-        function loadChatHistory(friendId) {
-            axios.get(`/chat-history/${friendId}`)
-                .then(response => {
-                    const messages = response.data;
-                    messages.forEach(message => {
-                        const messageElement = document.createElement('div');
-                        messageElement.innerHTML = `<strong>${message.user}</strong>: ${message.message} <br><small>${message.created_at}</small>`;
-                        chatBox.appendChild(messageElement);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error loading chat history:', error);
-                });
+            const friendId = e.target.getAttribute('data-friend-id');
+            friendIdInput.value = friendId;
+            chatBox.innerHTML = ''; // Clear chat box
+            // Load chat history with the selected friend
+            loadChatHistory(friendId);
         }
+    });
 
-        function sendMessage(friendId, message) {
-            axios.post('/send-message', {
-                friend_id: friendId,
-                message: message
-            })
+    chatForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const friendId = friendIdInput.value;
+        const message = messageInput.value;
+
+        if (friendId && message) {
+            // Send message to the server
+            sendMessage(friendId, message);
+            messageInput.value = ''; // Clear message input
+        }
+    });
+
+    function loadChatHistory(friendId) {
+        axios.get(`/chat-history/${friendId}`)
             .then(response => {
-                const messageElement = document.createElement('div');
-                messageElement.innerHTML = `<strong>${response.data.user}</strong>: ${response.data.message} <br><small>${response.data.created_at}</small>`;
-                chatBox.appendChild(messageElement);
-                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+                const messages = response.data;
+                messages.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    messageElement.innerHTML = `<strong>${message.user}</strong>: ${message.message} <br><small>${message.created_at}</small>`;
+                    chatBox.appendChild(messageElement);
+                });
             })
             .catch(error => {
-                console.error('Error sending message:', error);
+                console.error('Error loading chat history:', error);
             });
-        }
+    }
 
-        // Initialize Pusher
-        Pusher.logToConsole = true;
-
-        const pusher = new Pusher('e6ad8e79a62255b52122', {
-            cluster: 'eu',
-            encrypted: true
-        });
-
-        const channel = pusher.subscribe('chat');
-        channel.bind('message', function(data) {
+    function sendMessage(friendId, message) {
+        axios.post('/send-message', {
+            friend_id: friendId,
+            message: message
+        })
+        .then(response => {
             const messageElement = document.createElement('div');
-            messageElement.innerHTML = `<strong>${data.user}</strong>: ${data.message} <br><small>${data.created_at}</small>`;
+            messageElement.innerHTML = `<strong>${response.data.user}</strong>: ${response.data.message} <br><small>${response.data.created_at}</small>`;
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        })
+        .catch(error => {
+            console.error('Error sending message:', error);
         });
-        
+    }
+
+    // Initialize Pusher
+    Pusher.logToConsole = true;
+
+    const pusher = new Pusher('your-pusher-key', {
+        cluster: 'your-pusher-cluster',
+        encrypted: true
     });
+
+    const channel = pusher.subscribe('private-chat.' + friendIdInput.value);
+    channel.bind('App\\Events\\MessageSent', function(data) {
+        const messageElement = document.createElement('div');
+        messageElement.innerHTML = `<strong>${data.user}</strong>: ${data.message} <br><small>${data.created_at}</small>`;
+        chatBox.appendChild(messageElement);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+    });
+});
+    
 </script>

@@ -17,8 +17,8 @@ class MessageChannel
     /**
      * Authenticate the user's access to the channel.
      */
-    public function join(User $user): array|bool
+    public function join(User $user, int $id): array|bool
     {
-       return true;
+        return (int) $user->id === (int) $id;
     }
 }

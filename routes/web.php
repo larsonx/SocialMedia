@@ -71,5 +71,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/messages', [ChatController::class, 'Userlist'])->name('messages.userlist');
     Route::get('/messages/{friend}', [ChatController::class, 'fetchMessages'])->name('messages.fetch');
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('messages.send');
+    Route::get('/chat-history/{friend}', [ChatController::class, 'fetchMessages']);
 });
 require __DIR__.'/auth.php';
